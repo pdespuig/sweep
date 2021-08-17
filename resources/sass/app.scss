@@ -1,0 +1,82 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+.form-control {
+    border:none;
+    border-bottom: 1px solid gray;
+    padding: 5px 10px;
+    outline: none;
+}
+
+i{ color: gray;}
+  
+.input-group {
+    border: none; 
+    width: 500px;
+    max-width: 100%;
+}
+
+textarea:focus, .input-group:focus, .form-control:focus{
+    border-color: inherit;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.admin-login-btn {
+    width:100%;
+    background-color: #FB8500;
+    border-color: #FB8500;
+}
+
+.login-icon {
+    border:none;
+    border-bottom: 1px solid gray;
+    outline: none;
+}
+
+.admin-icon-con {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.admin-icon {
+    width: 100px;
+    height: 100px;
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    text-align: center;
+}
+
+.container-main {
+    background-color:#B7D9FF;
+    height: 100vh;
+    font-family: 'Raleway', sans-serif;
+}
+
+.bg-admin-page {
+    background-color:#B7D9FF;
+    z-index: 9999; 
+    width: 100%; 
+    height: 100%; 
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+}
+
+.container-second {
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+
