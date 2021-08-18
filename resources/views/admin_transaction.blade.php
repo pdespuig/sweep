@@ -69,7 +69,7 @@
             <p class="total_value">(63)</p>
         </a>
     </div>
-    <div class="adjust_con">
+    <div class="search_con">
         <div>
             <input class="searchbar" type="text" placeholder="Search..">
             <button class="search_btn">Search</button>
@@ -209,7 +209,6 @@
                                         <li class="list_booking_info"><b>Property Type:</b> Apartment</li>
                                         <li class="list_booking_info"><b>Status:</b> Pending</li>
                                         <li class="list_booking_info"><b>Price:</b> P376.00</li>
-                                                  
                                     </ul>
                                 </div>
                                 <div class="modal-footer trans_modal_footer">

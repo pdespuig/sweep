@@ -69,7 +69,7 @@
             <p class="total_value">(63)</p>
         </a>
     </div>
-    <div class="adjust_con">
+    <div class="search_con">
         <div>
             <input class="searchbar" type="text" placeholder="Search..">
             <button class="search_btn">Search</button>
