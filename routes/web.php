@@ -16,7 +16,7 @@ use App\Http\Controllers\MainController;
 */
 
 Route::get('/', function () {
-    return view('sweep_welcome');
+    return view('customer_services');
 });
 
 Route::post('/auth/save',[MainController::class, 'save'])->name('auth.save');

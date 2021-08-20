@@ -18,9 +18,11 @@
                 })
             })
     </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -166,6 +168,16 @@
                                                                         Condominiums
                                                                     </label>
                                                                 </div>
+                                                                <div class="appoint_con">
+                                                                    <div class="date_con">
+                                                                        <label for="date" class="date_label">Date:</label>
+                                                                        <input type="date" id="date" name="date" class="date_field">
+                                                                    </div>
+                                                                    <div class="date_con">
+                                                                        <label for="time" class="date_label">Time:</label>
+                                                                        <input type="time" id="time" name="time" class="time_field">
+                                                                    </div>
+                                                                </div>
                                                                 <div class="d-flex cancel_confirm_con">
                                                                     <button type="button" class="btn btn-block btn-primary cancel_btn" data-dismiss="modal"> Cancel </button>
                                                                     <button type="button" class="btn btn-block btn-primary confirm_btn"> Confirm </button>
@@ -271,6 +283,16 @@
                                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                                         Condominiums
                                                                     </label>
+                                                                </div>
+                                                                <div class="appoint_con">
+                                                                    <div class="date_con">
+                                                                        <label for="date" class="date_label">Date:</label>
+                                                                        <input type="date" id="date" name="date" class="date_field">
+                                                                    </div>
+                                                                    <div class="date_con">
+                                                                        <label for="time" class="date_label">Time:</label>
+                                                                        <input type="time" id="time" name="time" class="time_field">
+                                                                    </div>
                                                                 </div>
                                                                 <div class="d-flex cancel_confirm_con">
                                                                     <button type="button" class="btn btn-block btn-primary cancel_btn" data-dismiss="modal"> Cancel </button>
@@ -378,6 +400,16 @@
                                                                         Condominiums
                                                                     </label>
                                                                 </div>
+                                                                <div class="appoint_con">
+                                                                    <div class="date_con">
+                                                                        <label for="date" class="date_label">Date:</label>
+                                                                        <input type="date" id="date" name="date" class="date_field">
+                                                                    </div>
+                                                                    <div class="date_con">
+                                                                        <label for="time" class="date_label">Time:</label>
+                                                                        <input type="time" id="time" name="time" class="time_field">
+                                                                    </div>
+                                                                </div>
                                                                 <div class="d-flex cancel_confirm_con">
                                                                     <button type="button" class="btn btn-block btn-primary cancel_btn" data-dismiss="modal"> Cancel </button>
                                                                     <button type="button" class="btn btn-block btn-primary confirm_btn"> Confirm </button>
@@ -483,6 +515,16 @@
                                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                                         Condominiums
                                                                     </label>
+                                                                </div>
+                                                                <div class="appoint_con">
+                                                                    <div class="date_con">
+                                                                        <label for="date" class="date_label">Date:</label>
+                                                                        <input type="date" id="date" name="date" class="date_field">
+                                                                    </div>
+                                                                    <div class="date_con">
+                                                                        <label for="time" class="date_label">Time:</label>
+                                                                        <input type="time" id="time" name="time" class="time_field">
+                                                                    </div>
                                                                 </div>
                                                                 <div class="d-flex cancel_confirm_con">
                                                                     <button type="button" class="btn btn-block btn-primary cancel_btn" data-dismiss="modal"> Cancel </button>
@@ -615,6 +657,16 @@
                                                                         Condominiums
                                                                     </label>
                                                                 </div>
+                                                                <div class="appoint_con">
+                                                                    <div class="date_con">
+                                                                        <label for="date" class="date_label">Date:</label>
+                                                                        <input type="date" id="date" name="date" class="date_field">
+                                                                    </div>
+                                                                    <div class="date_con">
+                                                                        <label for="time" class="date_label">Time:</label>
+                                                                        <input type="time" id="time" name="time" class="time_field">
+                                                                    </div>
+                                                                </div>
                                                                 <div class="d-flex cancel_confirm_con">
                                                                     <button type="button" class="btn btn-block btn-primary cancel_btn" data-dismiss="modal"> Cancel </button>
                                                                     <button type="button" class="btn btn-block btn-primary confirm_btn"> Confirm </button>
@@ -720,6 +772,16 @@
                                                                     <label class="form-check-label" for="flexRadioDefault2">
                                                                         Condominiums
                                                                     </label>
+                                                                </div>
+                                                                <div class="appoint_con">
+                                                                    <div class="date_con">
+                                                                        <label for="date" class="date_label">Date:</label>
+                                                                        <input type="date" id="date" name="date" class="date_field">
+                                                                    </div>
+                                                                    <div class="date_con">
+                                                                        <label for="time" class="date_label">Time:</label>
+                                                                        <input type="time" id="time" name="time" class="time_field">
+                                                                    </div>
                                                                 </div>
                                                                 <div class="d-flex cancel_confirm_con">
                                                                     <button type="button" class="btn btn-block btn-primary cancel_btn" data-dismiss="modal"> Cancel </button>

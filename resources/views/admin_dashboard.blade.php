@@ -42,7 +42,7 @@
               <li><a href="admin_payroll">Payroll</a></li>
               <div class="profile_btn">
                   <button class="btn dropdown-toggle" type="button" id="menu1" data-toggle="dropdown" >
-                      <img class="profile_img" src="{{ asset('images/profile-icon-white-7.png') }}">
+                      <img class="profile_img" src="/img/user.png">
                       <span class="caret"></span>
                   </button>
                   <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

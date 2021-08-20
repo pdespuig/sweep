@@ -44,7 +44,6 @@
             <ul>
                 <li class="active"><a href="#">Home</a></li>
                 <li><a href="services">Jobs</a></li>
-                <li><a href="#">Transaction</a></li>
                 <li><a href="#">History</a></li>
                 <div class="customer_notif_icon">
                     <button class="btn dropdown-toggle dropdown_notif_icon" type="button" id="menu2" data-toggle="dropdown" >

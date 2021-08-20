@@ -263,7 +263,7 @@ nav ul li a:active {
 .customer_services_modal_title {
     font-weight: bold;
     font-size: 20px; 
-    width: 190px;
+    width: 300px;
     margin: auto;
     text-align: center;
     margin-bottom: 30px;
@@ -348,6 +348,21 @@ nav ul li a:active {
     font-size: 20px;
     width:290px;
     height: 50px;
+}
+.appoint_con {
+    margin-top: 20px;
+}
+.date_con {
+    margin-top: 10px;
+}
+.date_label {
+    margin-right: 20px;
+}
+.date_field {
+    width: 218px;
+}
+.time_field {
+    width: 173px;
 }
 .cancel_confirm_con {
     margin-top: 20px;
@@ -811,6 +826,26 @@ nav ul li a:active {
 .customer_profile_info_icon {
     margin-right: 10px;
 }
+
+
+/* Customer Dashboard */
+.customer_dashboard_con {
+    margin-top: 3.5vw;
+}
+.carousel-inner {
+   width: 100%;
+   margin: auto;
+}
+.carousel-item {
+    height: 300px;
+}
+.carousel-caption {
+    color: black;
+}
+
+
+
+
 
 
 /* Responsiveness */
