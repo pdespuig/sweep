@@ -59,6 +59,13 @@ nav ul li a:active {
     color: #FFFFFF;
     background: #042A6B;
 }
+a:hover {
+    text-decoration: none;
+    color: #FFB703;
+}
+.active {
+    color: #FFB703 ;
+}
 .menu-toggle {
     color: #FFFFFF;
     float: right;
@@ -68,11 +75,11 @@ nav ul li a:active {
     display: none;
 }
 .login_con {
-    margin-left: 200px;
+    margin-left: 180px;
     margin-top: 10px;
 }
 .login_inside_con {
-    width: 150px;
+    width: 400px;
 }
 .login_btn {
     background-color: #042A6B;
@@ -81,15 +88,27 @@ nav ul li a:active {
     font-weight: bold;
     border-radius: 5px; 
     font-size: 16px;
-    width: 100x;
+    width: 40%;
     height: 40px;
 }
-a:hover {
-    text-decoration: underline;
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 }
-.active {
-    text-decoration: underline;
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
 }
+.dropdown-content a:hover {background-color: #ddd;}
+.login_con:hover .dropdown-content {display: block;}
+.login_con:hover .login_btn {background-color: #2B81B0;}
+
+
 
 /* Welcome Page */
 
@@ -128,18 +147,47 @@ a:hover {
     width: 100x;
     height: 40px;
 }
+.signup_con:hover .signup_btn {
+    border: #FFB703 2px solid;
+    color: #FFB703;
+    background-color: #EDF1F8;
+}
 .fixed_footer{
     width: 100%;
     position: fixed;        
     background-color: #042A6B;
     padding: 10px 0;
     color: #fff;
-    height: 30%;
+    height: 25% auto;
     bottom: 0;
 }
+.footer_info_con {
+    width: 25%;
+    margin-left: 100px;
+    margin-top: 30px;
+    height: auto;
+    text-align: center;
+    font-size: 14px;
+}
+.contact_no {
+    color: #FFB703;
+}
+.footer_sign_con {
+    width: 250px;
+    margin-top: 30px;
+    margin-left: 100px;
+    float: right;
+}
+.signup_field:focus {
+    outline: none;
+}
+.footer_signup_btn {
+    margin-top: 15px;
+    font-weight: bold;
+}
 .footer_content {
-    float:left;
-    margin-left: 20px;
-    margin-top: 150px;
+    float:right;
+    margin-right: 20px;
+    margin-top: 10px;
     font-size: 14px;
 }

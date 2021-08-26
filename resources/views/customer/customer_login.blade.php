@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <title>    
-        Admin Login 
+        Customer Login 
     </title>
     <meta charset="utf-8">
     <meta name="viewpoint" content="width=device-width, initial-scale=1.0">
@@ -44,6 +44,9 @@
                     Login
                 </button>
                 <br>
+                <a class="register_link_btn" href="{{ route('customer.customer_register') }}"> 
+                    I don't have an Account, Create New
+                </a>
         </div>
     </div>
 </body>

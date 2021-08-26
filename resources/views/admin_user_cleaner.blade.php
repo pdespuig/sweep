@@ -2,7 +2,7 @@
 
 @section('content')
     <title>
-        Admin Payroll Employee Page
+        Admin Cleaner Page
     </title>
 
 <body>
@@ -28,12 +28,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="admin_user">
+                    <a href="admin_user" class="active">
                         User
                     </a>
                 </li>
                 <li>
-                    <a href="admin_payroll" class="active">
+                    <a href="admin_payroll">
                         Payroll
                     </a>
                 </li>
@@ -54,19 +54,19 @@
     </header> <!-- End of Navbar -->
 
     <div class="row"> <!-- Sub Header --> 
-        <a class="user_type_btn_cleaner" id="active" href="admin_payroll">
+        <a class="user_type_btn_cleaner" id="active" href="admin_user">
             ALL 
             <p class="total_value">
                 (63)
             </p>
         </a>
-        <a class="user_type_btn_cleaner" href="admin_payroll_employee">
-            EMPLOYEE
+        <a class="user_type_btn_cleaner" href="admin_user_customer">
+            CUSTOMER 
             <p class="total_value">
                 (63)
             </p>
         </a>
-        <a class="user_type_btn_cleaner" href="admin_payroll_cleaner">
+        <a class="user_type_btn_cleaner" href="admin_user_cleaner">
             CLEANER 
             <p class="total_value">
                 (63)
@@ -89,12 +89,11 @@
             Results per page: 
         </p>
         <button class="dropdown" id="number">
-            10
-            <span class="caret"></span>
+            10<span class="caret"></span>
         </button>
-    </div> <!-- End of Sub Header -->
+    </div> <!-- End of Sub Header --> 
 
-    <div class="user_table_con"> <!-- Employee Payroll Table --> 
+    <div class="user_table_con"> <!-- Cleaner Tabler --> 
         <div class="table_detail_con">
             <table class="table user_table" id="user_table">
                 <thead>
@@ -106,14 +105,24 @@
                             Last Name
                         </th>
                         <th class="text-center user_table_header">
-                            Total Days Present
+                            Age
                         </th>
                         <th class="text-center user_table_header">
-                            Rate
+                            Address
                         </th>
                         <th class="text-center user_table_header">
-                            Total Salary
+                            Email Address
                         </th>
+                        <th class="text-center user_table_header">
+                            Contact Number
+                        </th>
+                        <th class="text-center user_table_header">
+                            Valid ID
+                        </th>
+                        <th class="text-center user_table_header">
+                            Requirement
+                        </th>
+                        <th class="text-center user_table_header"></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -123,10 +132,20 @@
                         <td class="user_table_data"></td>
                         <td class="user_table_data"></td>
                         <td class="user_table_data"></td>
+                        <td class="user_table_data"></td>
+                        <td class="user_table_data"></td>
+                        <td class="user_table_data"></td>
+                        <td class="user_table_data">
+                            <div class="verify_con">
+                                <button class="verify_btn">
+                                    VERIFY
+                                </button>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-    </div> <!-- End of Employee Payroll Table --> 
+    </div> <!-- End of Cleaner Table -->
 </body>
 @endsection
