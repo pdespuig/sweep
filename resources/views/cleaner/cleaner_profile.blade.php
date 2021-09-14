@@ -65,7 +65,7 @@
             </h1> 
         </div>
     </div>
-    <div class="d-flex">
+    <div class="main_profile_con d-flex">
         <div class="cleaner_profile_con">
             <div class="card cleaner_profile_avatar_con">
                 <img class="card-img-top profile_avatar_img" src="/img/profile_avatar.png">

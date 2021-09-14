@@ -51,7 +51,6 @@ class MainController extends Controller
             return back()->with('fail','Something went wrong, try again later ');
         }
     }
-
     function check(Request $request){
         //Validate requests
         $request->validate([
@@ -77,9 +76,9 @@ class MainController extends Controller
     function logout(){
         if(session()->has('LoggedUser')){
             session()->pull('LoggedUser');
-            return redirect('/auth/login');
+            return redirect('/');
         }
-        return redirect('/auth/login');
+        return redirect('/');
     }
 
     function admin_dashboard(){
@@ -87,98 +86,11 @@ class MainController extends Controller
         return view('admin_dashboard', $data);
     }
 
-    function addService(Request $request){
-        
-        //Validate Requests
-        $request->validate([
-            'service_name'=>'required',
-            'description'=>'required',
-            'equipment'=>'required',
-            'material'=>'required',
-            'personal_protection'=>'required',
-            'resident_number_of_cleaner'=>'required',
-            'apartment_number_of_cleaner'=>'required',
-            'condo_number_of_cleaner'=>'required',
-            'resident_price'=>'required',
-            'apartment_price'=>'required',
-            'condo_price'=>'required'
-        ]);
-
-        //Insert data into database
-        $services = new Service();
-        $services->service_name = $request->service_name;
-        $services->service_description = $request->description;
-        $services->equipment = $request->equipment;
-        $services->material = $request->material;
-        $services->personal_protection = $request->personal_protection;
-        $addService = $services->save();
-
-        $id = $services->service_id;
-
-        $prices = new Price();
-        $prices->property_type = 'Medium-Upper Class Residential Areas';
-        $prices->price = $request->resident_price;
-        $prices->service_id = $id;
-        $prices->number_of_cleaner = $request->resident_number_of_cleaner;
-        $addService = $prices->save();
-        $prices = new Price();
-        $prices->property_type = 'Apartments';
-        $prices->price = $request->apartment_price;
-        $prices->service_id = $id;
-        $prices->number_of_cleaner = $request->apartment_number_of_cleaner;
-        $addService = $prices->save();
-        $prices = new Price();
-        $prices->property_type = 'Condominiums';
-        $prices->price = $request->condo_price;
-        $prices->service_id = $id;
-        $prices->number_of_cleaner = $request->condo_number_of_cleaner;
-        $addService = $prices->save();
-
-        if($addService){
-            return back()->with('success', 'New Service has been successfuly added to database');
-        }
-        else {
-            return back()->with('fail','Something went wrong, try again later ');
-        }
-    }
-
-    function admin_service(){
-        //Retrieve Services Data from database  
-        $data = ['LoggedUserInfo'=>Admin::where('admin_id','=', session('LoggedUser'))->first()];
-        return view('admin_services', $data);
-    }
-    function admin_transaction(){
-        //Retrieve Services Data from database  
-        $data = ['LoggedUserInfo'=>Admin::where('admin_id','=', session('LoggedUser'))->first()];
-        return view('admin_transaction', $data);
-    }
-    function updateStatus(Request $request){
- 
-        //Update data into database
-        //$comp_ids = implode(' ,',(array)$request->get('full_name')); 
-        $id = User::Where('full_name', $request->full_name)->value('user_id');
-        $user = Cleaner::Where('user_id', $id)->value('cleaner_id');
-        $updateStatus= Booking::Where('service_id', $request->service_id )->update(['status' => $request->status, 'cleaner_id' => '1'] );
-        
-        if($updateStatus){
-            return back()->with('success', 'Booking Status Updated');
-        }
-        else {
-            return back()->with('fail','Something went wrong, try again later ');
-        }
-    }
-
     //Customer Pages
-    function customer_login(){
-        return view('customer.customer_login');
-    }
     function customer_register(){
         return view('customer.customer_register');
     }
-    function customer_dashboard(){
-        $data = ['LoggedUserInfo'=>User::where('user_id','=', session('LoggedUser'))->first()];
-        return view('customer.customer_dashboard', $data);
-    }
+
     function customer_save(Request $request){
         
         //Validate Requests
@@ -188,39 +100,46 @@ class MainController extends Controller
             'email'=>'required|email|unique:admins',
             'contact_number'=>'required',
             'password'=>'required|confirmed|min:5|max:12',
-            'profile_picture'=>'required',
+            'profile_picture' => 'required|image|mimes:jpg,png,jpeg,gif,svg',// Only allow .jpg, .bmp and .png file types.
+            'valid_id' => 'required|image|mimes:jpg,png,jpeg,gif,svg'
         ]);
+            // Save the file locally in the storage/public/ folder under a new folder named /user
+            $request->profile_picture->store('user', 'public');
+            $request->valid_id->store('user', 'public');
+            
+           
+            //$profile_path = $request->file('profile_picture')->store('public/images');
+          //  $id_path = $request->file('valid_id')->store('public/images');
 
-        //Insert data into database
-        $users = new User;
-        $users->full_name = $request->full_name;
-        $users->email = $request->email;
-        $users->contact_number = $request->contact_number;
-        $users->password = Hash::make($request->password);
-        $users->profile_picture = $request->profile_picture;
-        $users->account_status = 'to_verify';
-        $users->user_type = 'Customer';
-        $customer_save = $users->save();
+            //Insert data into database
+            $users = new User;
+            $users->full_name = $request->full_name;
+            $users->email = $request->email;
+            $users->contact_number = $request->contact_number;
+            $users->password = Hash::make($request->password);
+            // Store the record, using the new file hashname which will be it's new filename identity.
+            $users->profile_picture = $request->profile_picture->hashName();
+            $users->account_status = 'To_verify';
+            $users->user_type = 'Customer';
+            $customer_save = $users->save();
 
-        $id = $users->user_id;
+            $id = $users->user_id;
 
-        $identifications = new Identification;
-        $identifications->user_id = $id;
-        $identifications->valid_id =  $request->valid_id;
-        $customer_save = $identifications->save();
+            $identifications = new Identification;
+            $identifications->user_id = $id;
+            $identifications->valid_id =  $request->valid_id->hashName();
+            $customer_save = $identifications->save();
+           
+            $customers = new Customer;
+            $customers->user_id = $id;
+            $customer_save = $customers->save();
 
-        $customers = new Customer;
-        $customers->user_id = $id;
-        $customer_save = $customers->save();
-
-
-
-        $id = $customers->customer_id;
-        $addresses = new Address;
-        $addresses->address = $request->address;
-        $addresses->customer_id = $id;
-        $customer_save = $addresses->save();
-
+            $id = $customers->customer_id;
+            $addresses = new Address;
+            $addresses->address = $request->address;
+            $addresses->customer_id = $id;
+            $customer_save = $addresses->save();
+        
         if($customer_save){
             return back()->with('success', 'New User has been successfuly added to database');
         }
@@ -228,7 +147,6 @@ class MainController extends Controller
             return back()->with('fail','Something went wrong, try again later ');
         }
     }
-
     function customer_check(Request $request){
         //Validate requests
         $request->validate([
@@ -251,49 +169,13 @@ class MainController extends Controller
         }
     }
 
-    function customer_services(){
-        $data = ['LoggedUserInfo'=>User::where('user_id','=', session('LoggedUser'))->first()];
-        return view('customer.customer_services', $data);
+    function customer_login(){
+        return view('customer.customer_login');
     }
-
-    function book(Request $request){
-        
-        //Validate Requests
-        $request->validate([
-            'property_type'=>'required',
-            'schedule_date'=>'required',
-            'schedule_time'=>'required',
-        ]);
-
-        $id = Customer::Where('user_id', $request->user_id )->value('customer_id');
-
-        $bookings = new Booking();
-        $bookings->service_id = $request->service_id;
-        $bookings->customer_id = $id;
-        $bookings->property_type = $request->property_type;
-        $bookings->schedule_date = $request->schedule_date;
-        $bookings->schedule_time = $request->schedule_time;
-        $bookings->status = 'Pending';
-        $bookings->is_paid = false;
-        $book = $bookings->save();
-        
-
-        if($book){
-            return back()->with('success', 'New Service has been successfuly added to database');
-        }
-        else {
-            return back()->with('fail','Something went wrong, try again later ');
-        }
-    }
-
-    function customer_transaction(){
+    
+    function customer_dashboard(){
         $data = ['LoggedUserInfo'=>User::where('user_id','=', session('LoggedUser'))->first()];
-        return view('customer.customer_transaction', $data);
-    }
-
-    function customer_history(){
-        $data = ['LoggedUserInfo'=>User::where('user_id','=', session('LoggedUser'))->first()];
-        return view('customer.customer_history', $data);
+        return view('customer.customer_dashboard', $data);
     }
 
     function customer_profile(){
@@ -313,6 +195,11 @@ class MainController extends Controller
         $data = ['LoggedUserInfo'=>User::where('user_id','=', session('LoggedUser'))->first()];
         return view('cleaner.cleaner_dashboard', $data);
     }
+    function cleaner_profile(){
+        $data = ['LoggedUserInfo'=>User::where('user_id','=', session('LoggedUser'))->first()];
+        return view('cleaner.cleaner_profile', $data);
+    }
+
     function cleaner_save(Request $request){
         
         //Validate Requests
@@ -322,46 +209,51 @@ class MainController extends Controller
             'email'=>'required|email|unique:admins',
             'contact_number'=>'required',
             'password'=>'required|confirmed|min:5|max:12',
-            'profile_picture'=>'required',
+            'profile_picture' => 'required|image|mimes:jpg,png,jpeg,gif,svg', // Only allow .jpg, .bmp and .png file types.
+            'valid_id' => 'required|image|mimes:jpg,png,jpeg,gif,svg'
         ]);
 
-        //Insert data into database
-        $users = new User;
-        $users->full_name = $request->full_name;
-        $users->email = $request->email;
-        $users->contact_number = $request->contact_number;
-        $users->password = Hash::make($request->password);
-        $users->profile_picture = $request->profile_picture;
-        $users->account_status = 'to_verify';
-        $users->user_type = 'Cleaner';
-        $cleaner_save = $users->save();
+            // Save the file locally in the storage/public/ folder under a new folder named /product
+            $request->profile_picture->store('user', 'public');
+            $request->valid_id->store('user', 'public');
 
-        $id = $users->user_id;
+            //Insert data into database
+            $users = new User;
+            $users->full_name = $request->full_name;
+            $users->email = $request->email;
+            $users->contact_number = $request->contact_number;
+            $users->password = Hash::make($request->password);
+            $users->profile_picture = $request->profile_picture->hashName();
+            $users->account_status = 'To_verify';
+            $users->user_type = 'Cleaner';
+            $cleaner_save = $users->save();
 
-        $identifications = new Identification;
-        $identifications->user_id = $id;
-        $identifications->valid_id =  $request->valid_id;
-        $customer_save = $identifications->save();
+            $id = $users->user_id;
 
-        $cleaners = new Cleaner;
-        $cleaners->user_id = $id;
-        $cleaners->age = $request->age;
-        $cleaners->address = $request->address;
-        $cleaner_save = $cleaners->save();
+            $identifications = new Identification;
+            $identifications->user_id = $id;
+            $identifications->valid_id = $request->valid_id->hashName();
+            $customer_save = $identifications->save();
+        
+            $cleaners = new Cleaner;
+            $cleaners->user_id = $id;
+            $cleaners->age = $request->age;
+            $cleaners->address = $request->address;
+            $cleaner_save = $cleaners->save();
 
-        $id = $cleaners->cleaner_id;
-        $clearances = new Clearance;
-        $clearances->cleaner_id = $id;
-        $clearances->requirement = $request->requirement;
-        $clearances->description = $request->description;
-        $cleaner_save = $clearances->save();
+            $id = $cleaners->cleaner_id;
+            $clearances = new Clearance;
+            $clearances->cleaner_id = $id;
+            $clearances->requirement = $request->requirement;
+            $clearances->description = $request->description;
+            $cleaner_save = $clearances->save();
 
-        if($cleaner_save){
-            return back()->with('success', 'New User has been successfuly added to database');
-        }
-        else {
-            return back()->with('fail','Something went wrong, try again later ');
-        }
+            if($cleaner_save){
+                return back()->with('success', 'New User has been successfuly added to database');
+            }
+            else {
+                return back()->with('fail','Something went wrong, try again later ');
+            }
     }
 
     function cleaner_check(Request $request){
@@ -386,13 +278,5 @@ class MainController extends Controller
         }
     }
 
-    function cleaner_job(){
-        $data = ['LoggedUserInfo'=>User::where('user_id','=', session('LoggedUser'))->first()];
-        return view('cleaner.cleaner_job', $data);
-    }
-    function cleaner_history(){
-        $data = ['LoggedUserInfo'=>User::where('user_id','=', session('LoggedUser'))->first()];
-        return view('cleaner.cleaner_history', $data);
-    }
 
 }
