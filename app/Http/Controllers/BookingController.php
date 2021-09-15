@@ -63,6 +63,12 @@ class BookingController extends Controller
         $data = ['LoggedUserInfo'=>Admin::where('admin_id','=', session('LoggedUser'))->first()];
         return view('admin_payroll_cleaner', $data);
     }
+
+    function calendar(){
+        //Retrieve Services Data from database  
+        $data = ['LoggedUserInfo'=>Admin::where('admin_id','=', session('LoggedUser'))->first()];
+        return view('calendar', $data);
+    }
     
     function customer_transaction(){
         $data = ['LoggedUserInfo'=>User::where('user_id','=', session('LoggedUser'))->first()];

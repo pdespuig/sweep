@@ -74,6 +74,7 @@ Route::group(['middleware'=>['AuthCheck']], function(){
     Route::get('/admin_payroll',[BookingController::class, 'admin_payroll'])->name('admin_payroll');
     Route::get('/admin_payroll_employee',[BookingController::class, 'admin_payroll_employee'])->name('admin_payroll_employee');
     Route::get('/admin_payroll_cleaner',[BookingController::class, 'admin_payroll_cleaner'])->name('admin_payroll_cleaner');
+    Route::get('/calendar',[BookingController::class, 'calendar'])->name('calendar');
 
     //Route for Customer Pages
     Route::get('/customer/customer_login',[MainController::class, 'customer_login'])->name('customer.customer_login');
